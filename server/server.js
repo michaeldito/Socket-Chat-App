@@ -12,10 +12,23 @@ let io = socketIO(server);
 app.use(express.static(publicPath));
 
 // register an event listener with on()
-// lets listen for a new connection
+// listen for a new connection from the client
 io.on('connection', (socket) => {
   console.log('New user connected');
 
+  // emit a custom event to the client side
+  socket.emit('newMessage', {
+    from: 'server',
+    text: 'Yo from server!',
+    createdAt: new Date()
+  });
+
+  // listen for createMessage events
+  socket.on('createMessage', (message) => {
+    console.log('createMessage', message);
+  });
+
+  // Listen for when the client disconnects
   socket.on('disconnect', () => {
     console.log('User has been disconnected');
   });

@@ -7,19 +7,7 @@
       <p>Welcome to the chat app!</p>
 
       <script src="/socket.io/socket.io.js"></script>
-      <script>
-        var socket = io();
-
-        // this event fires when the connection starts
-        socket.on('connect', () => {
-          console.log('Connected to server');
-        });
-
-        // this event fires when the connection drops
-        socket.on('disconnect', () => {
-          console.log('Disconnected from server');
-        });
-      </script>
+      <script src="/js/index.js"></script>
     </body>
   </head>
 
