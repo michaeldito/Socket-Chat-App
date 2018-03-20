@@ -66,7 +66,7 @@ socket.on('newLocationMessage', function (message) {
   let formattedTime = moment(message.createdAt).format('h:mm a');
   let template = jQuery('#location-message-template').html();
   let html = Mustache.render(template, {
-    text: message.text,
+    from: message.from,
     url: message.url,
     createdAt: formattedTime
   });
@@ -81,7 +81,6 @@ jQuery('#message-form').on('submit', function (e) {
   let messageTextBox = jQuery('[name=message]');
 
   socket.emit('createMessage', {
-    from: 'User',
     text: messageTextBox.val()
   }, function() {
     messageTextBox.val('');
